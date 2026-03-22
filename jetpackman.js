@@ -25,7 +25,7 @@ function preload() {
 /*******************************************************/
 function setup() {
     console.log("setup: ");
-    cnv = new Canvas(1920, 1080);
+    cnv = new Canvas(1920, 1076);
     let intervalID = setInterval(() => {
         if (pause < 1) {
             score = score + 1
@@ -124,7 +124,7 @@ function laserRandom() {
     playersprite.rotationLock = true;
 }
 function wall() {
-    wallSprite = new Sprite(2200, 840 + 12.5, 200, 375, 'l');
+    wallSprite = new Sprite(2200, 850 + 25, 200, 375, 'l');
     wallSprite2 = new Sprite(2200, 265, 200, 450, 'l');
     wallSprite.color = 255, 0, 0;
     wallSprite.vel.x = speed;
