@@ -124,7 +124,7 @@ function laserRandom() {
     playersprite.rotationLock = true;
 }
 function wall() {
-    wallSprite = new Sprite(2200, 850 + 25, 200, 375, 'l');
+    wallSprite = new Sprite(2200, 865, 200, 375, 'l');
     wallSprite2 = new Sprite(2200, 265, 200, 450, 'l');
     wallSprite.color = 255, 0, 0;
     wallSprite.vel.x = speed;
@@ -195,7 +195,7 @@ function draw() {
     }
     //**** stops the player from moving on the x axis when hit */
     playersprite.x = 100;
-    wallSprite.y = 840;
+    wallSprite.y = 852.5;
     wallSprite2.y = 265;
     //****spawner for obstacles */
     if (obstacletime >= spawnspeed) {
