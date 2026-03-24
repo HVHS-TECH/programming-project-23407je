@@ -4,15 +4,12 @@
 let pause = 0;
 let score = 0;
 let obstacletime = 0;
+let obstacleSpeed = -3;
 let choice = 0;
 let laserposition = 0;
-let speed = -3;
-let save = 0;
 let spawnspeed = 50;
-let random = 0;
 let randomAngle = 0;
 let highscore = 0;
-let colorchange = 0;
 let jetpackactive = 0;
 function preload() {
     imgplayeridle = loadImage('../images/playeridle.png');
@@ -161,14 +158,14 @@ function killscreen() {
 function draw() {
     //**** contant speed for the objects */
     if (pause < 1) {
-        wallSprite2.vel.x = speed;
-        wallSprite.vel.x = speed;
-        laserRandom3.vel.x = speed;
-        laserRandom1.vel.x = speed;
-        laserSprite4.vel.x = speed;
-        laserSprite3.vel.x = speed;
-        laserSprite2.vel.x = speed;
-        laserSprite.vel.x = speed;
+        wallSprite2.vel.x = obstacleSpeed;
+        wallSprite.vel.x = obstacleSpeed;
+        laserRandom3.vel.x = obstacleSpeed;
+        laserRandom1.vel.x = obstacleSpeed;
+        laserSprite4.vel.x = obstacleSpeed;
+        laserSprite3.vel.x = obstacleSpeed;
+        laserSprite2.vel.x = obstacleSpeed;
+        laserSprite.vel.x = obstacleSpeed;
     }
     //**** saving highscore */
     if (score > highscore) {
@@ -180,7 +177,6 @@ function draw() {
     wallSprite2.y = 265;
     //****spawner for obstacles */
     if (obstacletime >= spawnspeed) {
-        save = choice;
         choice = Math.random();
         choice = choice * 25
         if (laserSprite.x < 0) {
@@ -220,7 +216,7 @@ function draw() {
 
 
         obstacletime = 0;
-        if (speed > -900) {
+        if (obstacleSpeed > -900) {
             speed = speed - 0.2;
         }
         if (spawnspeed > 30) {
