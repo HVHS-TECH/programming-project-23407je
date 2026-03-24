@@ -69,10 +69,10 @@ function laser() {
     laserSprite = new Sprite(2200, 840 + 12.5, 20, 375, 'l');
     laserSprite2 = new Sprite(2200, 265, 20, 450, 'l');
     laserSprite.color = 255, 0, 0;
-    laserSprite.vel.x = speed;
+    laserSprite.vel.x = obstacleSpeed;
     laserSprite.rotationLock = true;
     laserSprite2.color = 255, 0, 0;
-    laserSprite2.vel.x = speed;
+    laserSprite2.vel.x = obstacleSpeed;
     laserSprite2.rotationLock = true;
 
 
@@ -84,10 +84,10 @@ function laser2() {
     laserSprite3 = new Sprite(2200, 765 + 12.5, 20, 525, 'l');
     laserSprite4 = new Sprite(2200, 190, 20, 300, 'l');
     laserSprite3.color = 255, 0, 0;
-    laserSprite3.vel.x = speed;
+    laserSprite3.vel.x = obstacleSpeed;
     laserSprite3.rotationLock = true;
     laserSprite4.color = 255, 0, 0;
-    laserSprite4.vel.x = speed;
+    laserSprite4.vel.x = obstacleSpeed;
     laserSprite4.rotationLock = true;
     playersprite.rotationLock = true;
 }
@@ -97,7 +97,7 @@ function laserRandom() {
     laserposition = laserposition + 190;
     laserRandom1 = new Sprite(2200, laserposition, 20, 300, 'l');
     laserRandom1.color = 255, 0, 0;
-    laserRandom1.vel.x = speed;
+    laserRandom1.vel.x = obstacleSpeed;
     laserRandom1.rotationLock = true;
     playersprite.rotationLock = true;
 }
@@ -105,10 +105,10 @@ function wall() {
     wallSprite = new Sprite(2200, 865, 200, 375, 'l');
     wallSprite2 = new Sprite(2200, 265, 200, 450, 'l');
     wallSprite.color = 255, 0, 0;
-    wallSprite.vel.x = speed;
+    wallSprite.vel.x = obstacleSpeed;
     wallSprite.rotationLock = true;
     wallSprite2.color = 255, 0, 0;
-    wallSprite2.vel.x = speed;
+    wallSprite2.vel.x = obstacleSpeed;
     wallSprite2.rotationLock = true;
     playersprite.rotationLock = true;
     replaySprite.rotationLock = true;
@@ -122,7 +122,7 @@ function laserRotated() {
     randomAngle = randomAngle * 90;
     laserRandom3.rotation = randomAngle;
     console.log(randomAngle);
-    laserRandom3.vel.x = speed;
+    laserRandom3.vel.x = obstacleSpeed;
     laserRandom3.rotationLock = true;
 }
 
@@ -217,7 +217,7 @@ function draw() {
 
         obstacletime = 0;
         if (obstacleSpeed > -900) {
-            speed = speed - 0.2;
+            obstacleSpeed = obstacleSpeed - 0.2;
         }
         if (spawnspeed > 30) {
             spawnspeed = spawnspeed - 3;
@@ -247,7 +247,7 @@ function draw() {
         laserRandom3.vel.x = -500;
         laserRandom3.x = -500;
         spawnspeed = 50;
-        speed = -3;
+        obstacleSpeed = -3;
         pause = 0;
         console.log("active");
         score = 0
