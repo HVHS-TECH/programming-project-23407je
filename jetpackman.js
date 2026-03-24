@@ -7,13 +7,13 @@ let obstacletime = 0;
 let choice = 0;
 let laserposition = 0;
 let speed = -3;
-save = 0;
+let save = 0;
 let spawnspeed = 50;
 let random = 0;
 let randomAngle = 0;
 let highscore = 0;
 let colorchange = 0;
-jetpackactive = 0;
+let jetpackactive = 0;
 function preload() {
     imgplayeridle = loadImage('../images/playeridle.png');
     imgplayerlaunch = loadImage('../images/jetpackstart.gif');
@@ -37,36 +37,20 @@ function setup() {
         }
     }, 100)
 
-
-
-
     world.gravity.y = 20;
-
-
-
-
+/** the top and bottom wall so the player doesnt escape*/ 
     wallTop = new Sprite(960, 20, 1920, 40, 'k');
 
-
-
-
     wallBot = new Sprite(960, 1060, 1920, 40, 'k');
-
-
-
-
+/** the players hitbox */
     playersprite = new Sprite(100, 1020, 58, 104, 'd');
+/**the players model */
     playersprite.image = (imgplayeridle);
-
-
 
     playersprite.color = 255, 200, 200;
 
-
-
-
     playersprite.rotationSpeed = 2;
-
+/** due to the way that the time is set up I created sprites that are off screen and do not move so that the sprite is defined. This allows for you to always be able to die by the obstacles and it also allows for them to spawn where they are meant to */
     laserSprite = new Sprite(-500, 2500, 20, 400, 'l');
     laserSprite2 = new Sprite(-500, 2500, 20, 450, 'l');
     laserSprite3 = new Sprite(-500, 2500, 20, 400, 'l');
@@ -78,12 +62,9 @@ function setup() {
     wallSprite2 = new Sprite(-500, 2500, 200, 450, 'l');
     replaySprite = new Sprite(width / 2, -500, 150, 150);
     laserRandom3 = new Sprite(-500, 2500, 150, 150);
-    replaySprite.visible = true;
     replaySprite.rotationLock = true;
     playersprite.rotationLock = true;
     laserRandom3.rotationLock = true;
-
-
 
 }
 //**** object functions */
@@ -252,6 +233,7 @@ function draw() {
         playersprite.y = 1020;
         replaySprite.visible = false;
         replaySprite.y = -500
+        mainMenu.y = -500
         laserSprite.x = -500;
         laserSprite.vel.x = -3
         world.gravity.y = 20;
@@ -289,6 +271,9 @@ function draw() {
             if (playersprite.vel.y > -10) {
                 playersprite.vel.y = playersprite.vel.y + -1;
             }
+               if (kb.pressed('p')) {
+                
+               }
         };
         if (kb.released('up')) {
             playersprite.image = (imgplayeridle);
@@ -297,7 +282,7 @@ function draw() {
                 jetpackactive = 0;
             }
         };
-        //**** detects when you collide with a killable object */
+        //**** detects when you collide with a killable object and does the killscreen function*/
     }
     if (playersprite.collides(laserSprite)) {
         killscreen();

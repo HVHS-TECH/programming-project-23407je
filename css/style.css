@@ -5,12 +5,12 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #00f7ff;
 }
 
 .container {
   display: flex;
-  gap: 20px;
+  gap: 60px;
 }
 
 .column {
@@ -20,7 +20,7 @@ body {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 40px 40px;
   font-size: 16px;
   cursor: pointer;
   border: none;
