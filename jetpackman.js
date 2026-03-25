@@ -40,7 +40,7 @@ function setup() {
 
     wallBot = new Sprite(960, 1060, 1920, 40, 'k');
 /** the players hitbox */
-    playersprite = new Sprite(100, 1020, 58, 104, 'd');
+    playersprite = new Sprite(700, 1020, 58, 104, 'd');
 /**the players model */
     playersprite.image = (imgplayeridle);
 
@@ -59,6 +59,7 @@ function setup() {
     wallSprite2 = new Sprite(-500, 2500, 200, 450, 'l');
     replaySprite = new Sprite(width / 2, -500, 150, 150);
     laserRandom3 = new Sprite(-500, 2500, 150, 150);
+        fireBall = new Sprite(-500, 2500, 150, 150);
     replaySprite.rotationLock = true;
     playersprite.rotationLock = true;
     laserRandom3.rotationLock = true;
@@ -125,6 +126,11 @@ function laserRotated() {
     laserRandom3.vel.x = obstacleSpeed;
     laserRandom3.rotationLock = true;
 }
+function fireBalls() {
+    for (let i = 0; i < 1080; i + 216) {
+        console.log(i);
+    }
+}
 
 //**** killfunction */
 function killscreen() {
@@ -172,47 +178,57 @@ function draw() {
         highscore = score;
     }
     //**** stops the player from moving on the x axis when hit */
-    playersprite.x = 100;
+    playersprite.x = 700
     wallSprite.y = 852.5;
     wallSprite2.y = 265;
     //****spawner for obstacles */
     if (obstacletime >= spawnspeed) {
         choice = Math.random();
-        choice = choice * 25
-        if (laserSprite.x < 0) {
-            laserSprite.vel.x = 0
-            laserSprite2.vel.x - 0
+        choice = choice * 900
+        if (laserSprite.x < 600) {
+            if (laserSprite < 0) {
+                 laserSprite.vel.x = 0
+            laserSprite2.vel.x = 0
+            }
             if (choice >= 5 && choice < 10) {
                 laser();
             }
         }
-        if (laserSprite3.x < 0) {
+        if (laserSprite3.x < 600) {
+                    if (laserSprite3 < 0) {
             laserSprite3.vel.x = 0
             laserSprite4.vel.x = 0
+            }
             if (choice < 5 && choice >= 0) {
                 laser2();
             }
         }
-        if (laserRandom1.x < 0) {
+        if (laserRandom1.x < 600) {
+                   if (laserRandom1.x < 0) {
             laserRandom1.vel.x = 0
+            }
             if (choice >= 10 && choice < 15) {
                 laserRandom();
             }
         }
-        if (wallSprite.x < -0) {
-            wallSprite.vel.x = 0
+        if (wallSprite.x < 600) {
+                           if (wallSprite.x < 0) {
+                     wallSprite.vel.x = 0
             wallSprite2.vel.x = 0
+            }    
             if (choice >= 15 && choice < 20) {
                 wall();
             }
         }
-        if (laserRandom3.x < -0) {
+        if (laserRandom3.x < 600) {
             laserRandom3.vel.x = 0
-            if (choice >= 20 && choice <= 25) {
+            if (choice >= 20 && choice < 25) {
                 laserRotated();
             }
         }
-
+     if (choice > 25) {
+                fireBalls();
+        }
 
 
         obstacletime = 0;
@@ -229,7 +245,6 @@ function draw() {
         playersprite.y = 1020;
         replaySprite.visible = false;
         replaySprite.y = -500
-        mainMenu.y = -500
         laserSprite.x = -500;
         laserSprite.vel.x = -3
         world.gravity.y = 20;
