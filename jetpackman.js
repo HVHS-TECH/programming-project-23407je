@@ -116,10 +116,7 @@ function wall() {
     replaySprite.rotationLock = true;
 }
 function laserRotated() {
-    random = Math.random();
-    random = random * 750
-    random = random + 150
-    laserRandom3 = new Sprite(2200, random, 20, 300, 'l');
+    laserRandom3 = new Sprite(2200, random(190, 870), 20, 300, 'l');
     randomAngle = Math.random();
     randomAngle = randomAngle * 90;
     laserRandom3.rotation = randomAngle;
@@ -128,20 +125,21 @@ function laserRotated() {
     laserRandom3.rotationLock = true;
 }
 function fireBalls() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
         console.log(i);
-        fireBall = new Sprite(2200, random(0, 1060), 50);
+        fireBallPlacement = random(40, 1020);
+        fireBall = new Sprite(2200,fireBallPlacement , 50);
         fireBall.vel.x = obstacleSpeed;
         fireBall.collider = 'kinematic'
         fireBall.rotationLock = true;
-        fireBall.add(fireBallGroup);
+        fireBallGroup.add(fireBall);
     }
 }
 
 //**** killfunction */
 function killscreen() {
     console.log("HIT");
-    fireBall.vel.x = 0;
+    fireBallGroup.vel.x = 0;
     replaySprite.visible = true;
     replaySprite.static = true;
     replaySprite.y = 540
@@ -191,7 +189,7 @@ function draw() {
     //****spawner for obstacles */
     if (obstacletime >= spawnspeed) {
         choice = Math.random();
-        choice = choice * 900
+        choice = choice * 30
         if (laserSprite.x < 600) {
             if (laserSprite < 0) {
                  laserSprite.vel.x = 0
@@ -250,7 +248,7 @@ function draw() {
     //**** replay option */
     if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
         playersprite.y = 1020;
-        fireBall.x = -500;
+        fireBallGroup.x = -500;
         replaySprite.visible = false;
         replaySprite.y = -500
         laserSprite.x = -500;
@@ -332,7 +330,7 @@ function draw() {
         }
     }
     if (playersprite.collides(fireBallGroup)) {
-        killscree
+        killscreen();
     }
     if (pause >= 1) {
         playersprite.vel.x = 0;
