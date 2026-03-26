@@ -23,6 +23,7 @@ function preload() {
 function setup() {
     console.log("setup: ");
     cnv = new Canvas(1920, 1076);
+    fireBallGroup = new Group();
     let intervalID = setInterval(() => {
         if (pause < 1) {
             score = score + 1
@@ -127,14 +128,20 @@ function laserRotated() {
     laserRandom3.rotationLock = true;
 }
 function fireBalls() {
-    for (let i = 0; i < 1080; i + 216) {
+    for (let i = 0; i < 5; i++) {
         console.log(i);
+        fireBall = new Sprite(2200, random(0, 1060), 50);
+        fireBall.vel.x = obstacleSpeed;
+        fireBall.collider = 'kinematic'
+        fireBall.rotationLock = true;
+        fireBall.add(fireBallGroup);
     }
 }
 
 //**** killfunction */
 function killscreen() {
     console.log("HIT");
+    fireBall.vel.x = 0;
     replaySprite.visible = true;
     replaySprite.static = true;
     replaySprite.y = 540
@@ -243,6 +250,7 @@ function draw() {
     //**** replay option */
     if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
         playersprite.y = 1020;
+        fireBall.x = -500;
         replaySprite.visible = false;
         replaySprite.y = -500
         laserSprite.x = -500;
@@ -322,6 +330,9 @@ function draw() {
         if (playersprite.x < wallSprite2.x - 100 && playersprite.y > 491) {
             killscreen();
         }
+    }
+    if (playersprite.collides(fireBallGroup)) {
+        killscree
     }
     if (pause >= 1) {
         playersprite.vel.x = 0;
