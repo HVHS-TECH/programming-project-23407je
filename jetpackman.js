@@ -15,6 +15,7 @@ function preload() {
     imgplayeridle = loadImage('../images/playeridle.png');
     imgplayerlaunch = loadImage('../images/jetpackstart.gif');
     imgplayeractive = loadImage('../images/jetpackactive.gif');
+    replaySpriteimg = loadImage('../images/replaybutton.png');
     console.log("active");
 }
 /*******************************************************/
@@ -64,7 +65,7 @@ function setup() {
     replaySprite.rotationLock = true;
     playersprite.rotationLock = true;
     laserRandom3.rotationLock = true;
-
+    replaySprite.image = (replaySpriteimg);
 }
 //**** object functions */
 function laser() {
@@ -247,6 +248,7 @@ function draw() {
     background(255, 200, 200);
     //**** replay option */
     if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
+        gameOverTextPlacement = -500
         playersprite.y = 1020;
         fireBallGroup.x = -500;
         replaySprite.visible = false;
@@ -317,7 +319,7 @@ function draw() {
         killscreen();
     }
     if (playersprite.collides(wallSprite)) {
-        if (playersprite.x < wallSprite.x - 100 && playersprite.y < 839) {
+        if (playersprite.x < wallSprite.x - 100) {
             killscreen();
         }
     }
