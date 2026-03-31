@@ -130,7 +130,7 @@ function fireBalls() {
         console.log(i);
         fireBallPlacement = random(40, 1020);
         fireBall = new Sprite(2200,fireBallPlacement , 50);
-        fireBall.vel.x = obstacleSpeed;
+        fireBallGroup.vel.x = obstacleSpeed;
         fireBall.collider = 'kinematic'
         fireBall.rotationLock = true;
         fireBallGroup.add(fireBall);
@@ -207,6 +207,7 @@ function draw() {
             }
             if (choice < 5 && choice >= 0) {
                 laser2();
+                console.log("active");
             }
         }
         if (laserRandom1.x < 600) {
@@ -228,7 +229,7 @@ function draw() {
         }
         if (laserRandom2.x < 600) {
             if (laserRandom2.x < 0) {
-                            laserRandom2.vel.x = 0
+            laserRandom2.vel.x = 0
             }
             if (choice >= 20 && choice < 25) {
                 laserRotated();
@@ -240,10 +241,10 @@ function draw() {
 
 
         obstacletime = 0;
-        if (obstacleSpeed > -900) {
-            obstacleSpeed = obstacleSpeed - 0.2;
+        if (obstacleSpeed > -50) {
+            obstacleSpeed = obstacleSpeed - 1;
         }
-        if (spawnspeed > 30) {
+        if (spawnspeed > 20) {
             spawnspeed = spawnspeed - 3;
         }
     }
@@ -260,6 +261,8 @@ function draw() {
         world.gravity.y = 20;
         laserSprite2.x = -500;
         laserSprite2.vel.x = -3
+        laserSprite3.x = -500;
+        laserSprite3.vel.x = -3
         laserSprite4.x = -500;
         laserSprite4.vel.x = -3
         wallSprite.x = -500;
@@ -290,11 +293,29 @@ function draw() {
             if (playersprite.vel.y > -10) {
                 playersprite.vel.y = playersprite.vel.y + -1;
             }
-               if (kb.pressed('p')) {
-                
-               }
+        };
+               if (mouse.pressing()) {
+            if (jetpackactive == 0) {
+                playersprite.image = (imgplayerlaunch);
+            }
+            let jetpackid = setInterval(() => {
+                if (mouse.pressing()) {
+                    jetpackactive = 1;
+                    playersprite.image = (imgplayeractive);
+                }
+            }, 500)
+            if (playersprite.vel.y > -10) {
+                playersprite.vel.y = playersprite.vel.y + -1;
+            }
         };
         if (kb.released('up')) {
+            playersprite.image = (imgplayeridle);
+            if (playersprite.vel.y > 0) {
+                playersprite.vel.y = playersprite.vel.y + 2;
+                jetpackactive = 0;
+            }
+        };
+                if (mouse.released()) {
             playersprite.image = (imgplayeridle);
             if (playersprite.vel.y > 0) {
                 playersprite.vel.y = playersprite.vel.y + 2;
@@ -327,7 +348,7 @@ function draw() {
         killscreen();
     }
     if (playersprite.collides(wallSprite2)) {
-        if (playersprite.x < wallSprite2.x - 100 && playersprite.y > 491) {
+        if (playersprite.x < wallSprite2.x - 100) {
             killscreen();
         }
     }
