@@ -170,8 +170,12 @@ function killscreen() {
 function draw() {
     //**** contant speed for the objects */
     if (pause < 1) {
-        wallSprite2.vel.x = obstacleSpeed;
-        wallSprite.vel.x = obstacleSpeed;
+        if ( wallSprite2.x > 0) {
+                  wallSprite2.vel.x = obstacleSpeed;  
+        }
+        if ( wallSprite.x > 0) {
+                  wallSprite.vel.x = obstacleSpeed;  
+        }
         laserRandom2.vel.x = obstacleSpeed;
         laserRandom1.vel.x = obstacleSpeed;
         laserSprite4.vel.x = obstacleSpeed;
@@ -179,7 +183,7 @@ function draw() {
         laserSprite2.vel.x = obstacleSpeed;
         laserSprite.vel.x = obstacleSpeed;
         fireBallGroup.vel.x = obstacleSpeed;
-    }
+    }       
     //**** saving highscore */
     if (score > highscore) {
         highscore = score;
@@ -192,8 +196,9 @@ function draw() {
     if (obstacletime >= spawnspeed) {
         choice = Math.random();
         choice = choice * 30
+        console.log("spawned");
         if (laserSprite.x < 600) {
-            if (laserSprite < 0) {
+            if (laserSprite.x < 0) {
                  laserSprite.vel.x = 0
             laserSprite2.vel.x = 0
             }
@@ -202,7 +207,7 @@ function draw() {
             }
         }
         if (laserSprite3.x < 600) {
-                    if (laserSprite3 < 0) {
+                    if (laserSprite3.x < 0) {
             laserSprite3.vel.x = 0
             laserSprite4.vel.x = 0
             }
@@ -220,7 +225,7 @@ function draw() {
             }
         }
         if (wallSprite.x < 600) {
-            if (wallSprite.x < 0) {
+            if (wallSprite.x < 0) {      
             wallSprite.vel.x = 0
             wallSprite2.vel.x = 0
             }    
