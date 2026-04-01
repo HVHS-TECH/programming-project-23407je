@@ -178,12 +178,13 @@ function draw() {
         laserSprite3.vel.x = obstacleSpeed;
         laserSprite2.vel.x = obstacleSpeed;
         laserSprite.vel.x = obstacleSpeed;
+        fireBallGroup.vel.x = obstacleSpeed;
     }
     //**** saving highscore */
     if (score > highscore) {
         highscore = score;
     }
-    //**** stops the player from moving on the x axis when hit */
+    //**** stops the player from moving on the x axis when hit and also stops the walls from moving on the Y axis*/
     playersprite.x = 700
     wallSprite.y = 852.5;
     wallSprite2.y = 265;
